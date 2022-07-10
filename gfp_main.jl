@@ -1,7 +1,7 @@
 using XLSX, DataFrames, Printf, FASTX, BioSequences
 
 seq = [FASTA.sequence(record) for record in open(FASTA.Reader, "Data/avref.fasta")][1]
-ref = map(x -> only(string(x)), collect(translate(seq)[1:end-1])) # end codon
+ref = collect("M" * string(translate(seq)[1:end-1])) # end codon
 
 excel_data = DataFrame(XLSX.readtable("Data/Gdata.xlsx", "Sheet1", infer_eltypes=true)...)[:, [:aaMutations, :medianBrightness]]
 
@@ -20,11 +20,11 @@ for (mutstr, val) in map(Tuple, eachrow(excel_data))
         mutstr_vector = Vector{String}()
 
         for mutar in split(mutstr, ":")
-            if mutar[2] != ref[num]
+            mut = mutar[end]
+            num = parse(Int, mutar[3:end-1]) + 2
+            if only(mutar[2]) != ref[num]
                 error("Data!")
             end
-            mut = mutar[end]
-            num = parse(Int, mutar[3:end-1]) + 1
             ref_seq[num] = mut
             push!(mutstr_vector, mutar[2] * string(num) * mutar[end])
         end
