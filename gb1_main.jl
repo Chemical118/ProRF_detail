@@ -5,10 +5,10 @@ ref = collect(seq);
 
 WinputC, WselectC = 1759616, 3041819
 
-excel_data = DataFrame(XLSX.readtable("Data/gb1_raw.xlsx", "single_mutants", infer_eltypes=true)...)
-
 data_vector = Vector{Tuple{String, Float64}}()
 seq_vector = Vector{String}()
+
+excel_data = DataFrame(XLSX.readtable("Data/gb1_raw.xlsx", "single_mutants", infer_eltypes=true)...)
 for (w1, l1, m1, inputC, selectC) in map(Tuple, eachrow(excel_data))
     if only(m1) != '*'
         if only(w1) != ref[l1]
@@ -22,7 +22,6 @@ for (w1, l1, m1, inputC, selectC) in map(Tuple, eachrow(excel_data))
 end
 
 excel_data = DataFrame(XLSX.readtable("Data/gb1_raw.xlsx", "double_mutants", infer_eltypes=true)...)
-
 for (w1, l1, m1, w2, l2, m2, inputC, selectC) in map(Tuple, eachrow(excel_data))
     if only(m1) != '*' && only(m2) != '*'
         if only(w1) != ref[l1] || only(w2) != ref[l2]

@@ -18,6 +18,7 @@ for (ml1, wt1, m1, v, s) in map(Tuple, eachrow(excel_data))
     push!(data_vector, (String(@sprintf "%c%d%c" ref[ml1] ml1 m1), v, s))
 end
 
+# 2 mutation
 excel_data = DataFrame(XLSX.readtable("Data/amb_data.xlsx", "2mut", infer_eltypes=true)...)
 for (ml2, m2, ml1, m1, wt1, wt2, v, s) in map(Tuple, eachrow(excel_data))
     if ref[ml1] != only(wt1) || ref[ml2] != only(wt2)
