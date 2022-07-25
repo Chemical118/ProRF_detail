@@ -58,7 +58,9 @@ XLSX.openxlsx("Data/ePdata.xlsx", mode="w") do xf
     sheet = xf[1]
     XLSX.rename!(sheet, "Sheet1")
     sheet["A1"] = "aaMutations"
-    sheet["B1"] = "Enrichment_score"
+    sheet["B1"] = "Enrichment score"
+    sheet["C1"] = "Log Enrichment score"
     sheet["A2", dim=1] = map(x -> x[1], data_vector)
     sheet["B2", dim=1] = map(x -> x[2], data_vector)
+    sheet["C2", dim=1] = log.(map(x -> x[2], data_vector))
 end
