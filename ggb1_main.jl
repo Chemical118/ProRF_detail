@@ -1,6 +1,6 @@
 using XLSX, DataFrames, Printf, FASTX
 
-excel_data = DataFrame(XLSX.readtable("Data/gGdata.xlsx", "Sheet1", infer_eltypes=true)...)
+excel_data = DataFrame(XLSX.readtable("Data/gGdata.xlsx", "Sheet1", infer_eltypes=true))
 
 data_vector = Vector{Tuple{String, Float64}}()
 seq_vector = Vector{String}()

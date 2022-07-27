@@ -3,7 +3,7 @@ using XLSX, DataFrames, Printf, FASTX, BioSequences
 seq = [FASTA.sequence(record) for record in open(FASTA.Reader, "Data/avref.fasta")][1]
 ref = collect("M" * string(translate(seq)[1:end-1])) # end codon
 
-excel_data = DataFrame(XLSX.readtable("Data/Gdata.xlsx", "Sheet1", infer_eltypes=true)...)[:, [:aaMutations, :medianBrightness]]
+excel_data = DataFrame(XLSX.readtable("Data/Gdata.xlsx", "Sheet1", infer_eltypes=true))[:, [:aaMutations, :medianBrightness]]
 
 data_vector = Vector{Tuple{String, Float64}}()
 seq_vector = Vector{String}()

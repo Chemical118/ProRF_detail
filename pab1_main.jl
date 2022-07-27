@@ -4,7 +4,7 @@ using XLSX, DataFrames, Printf, FASTX
 seq = [FASTA.sequence(record) for record in open(FASTA.Reader, "Data/pab1ref.fasta")][1]
 ref = map(x -> only(string(x)), collect(seq))
 
-excel_data = DataFrame(XLSX.readtable("Data/pab1data.xlsx", "All_Epistasis", infer_eltypes=true)...)
+excel_data = DataFrame(XLSX.readtable("Data/pab1data.xlsx", "All_Epistasis", infer_eltypes=true))
 
 data_vector = Vector{Tuple{String, Float64}}()
 seq_vector = Vector{String}()

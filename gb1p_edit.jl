@@ -1,6 +1,6 @@
 using XLSX, DataFrames
 
-excel_data = DataFrame(XLSX.readtable(raw"Data\GB1p\data.xlsx", "Sheet1", infer_eltypes=true)...)
+excel_data = DataFrame(XLSX.readtable(raw"Data\GB1p\data.xlsx", "Sheet1", infer_eltypes=true))
 
 XLSX.openxlsx(raw"Data\GB1p\data.xlsx", mode="rw") do xf
     sheet = xf[1]

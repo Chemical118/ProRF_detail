@@ -3,7 +3,7 @@ using XLSX, DataFrames, Printf, FASTX
 seq = "IEKFKLLAEKVEEIVAKNARAEIDYSDAPDEFRDPLMDTLMTDPVRLPSGTVMDRSIILRHLLNSPTDPFNRQMLTESMLEPVPELKEQIQAWMREKQSSDH"
 ref = collect(seq)
 
-excel_data = DataFrame(XLSX.readtable("Data/ube_data.xlsx", "Sheet1", infer_eltypes=true)...)[:, [:seqID, :nscor_log2_ratio]]
+excel_data = DataFrame(XLSX.readtable("Data/ube_data.xlsx", "Sheet1", infer_eltypes=true))[:, [:seqID, :nscor_log2_ratio]]
 
 data_vector = Vector{Tuple{String, Float64}}()
 seq_vector = Vector{String}()

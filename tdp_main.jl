@@ -8,7 +8,7 @@ data_vector = Vector{Tuple{String, Float64, Float64}}()
 seq_vector = Vector{String}()
 
 # 1 mutation
-excel_data = DataFrame(XLSX.readtable(excel_loc, "1mut", infer_eltypes=true)...)
+excel_data = DataFrame(XLSX.readtable(excel_loc, "1mut", infer_eltypes=true))
 for (ml1, wt1, m1, s, v, mstr1) in map(Tuple, eachrow(excel_data))
     ml1 = parse(Int, mstr1[2:end-1]) - 289
     if ref[ml1] != only(wt1)
@@ -21,7 +21,7 @@ for (ml1, wt1, m1, s, v, mstr1) in map(Tuple, eachrow(excel_data))
 end
 
 # 2 mutation
-excel_data = DataFrame(XLSX.readtable(excel_loc, "2mut", infer_eltypes=true)...)
+excel_data = DataFrame(XLSX.readtable(excel_loc, "2mut", infer_eltypes=true))
 for (ml1, ml2, wt1, wt2, m1, m2, s, v, mstr1, mstr2) in map(Tuple, eachrow(excel_data))
     ml1 = parse(Int, mstr1[2:end-1]) - 289
     ml2 = parse(Int, mstr2[2:end-1]) - 289
